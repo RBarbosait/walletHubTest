@@ -30,12 +30,7 @@ public class WallethubPage {
 	
 
 	
-	//private By buttonLogin= By.xpath("//input[@id='login']");
-	//private By msgLogin= By.xpath("//div[@id='error']/p");
-	//private By userButton=By.xpath("//[@id=\'mount_0_0_42\']/div/div[1]/div/div[2]/div[4]/div[1]/span/div/div[1]/div/svg/g/image");
-	//private By setupUserButton=By.xpath("//*[@id=\'web-app\']/header/div/nav[1]/div[5]/span");
 	private By userName=By.xpath("//*[@id=\'scroller\']/main/div[1]/div/div[2]/h1");
-	//private By fivestarButton=By.xpath("/html/body/web-app/div/div[1]/main/div[2]/div/div[3]/section/div[2]/div[3]/review-star/div/svg[1]");
 	private By onestarButton=By.cssSelector("div.review-stat-box>div.rv.review-action.ng-enter-element>review-star>div>svg:nth-child(1)");
 	private By twostarButton=By.cssSelector("div.review-stat-box>div.rv.review-action.ng-enter-element>review-star>div>svg:nth-child(2)");
 	private By threestarButton=By.cssSelector("div.review-stat-box>div.rv.review-action.ng-enter-element>review-star>div>svg:nth-child(3)");
@@ -50,8 +45,10 @@ public class WallethubPage {
 
 	private By loginTab=By.xpath("//*[@id=\'join-light\']/form/div/nav/ul/li[2]");
 	
-	private By reviewMsg=By.xpath("//*[@id=\'scroller\']/main/div/div/div[1]/h4");
+	private By reviewMsg=By.xpath("/html/body/web-app/div/div[1]/main/div/div/div[1]");
 	private By continueButton=By.xpath("//*[@id=\'scroller\']/main/div/div/div[2]/div/div[3]/div[2]");
+	
+	private By reviewMsgPosted=By.xpath("//*[@id=\'scroller\']/main/div[2]/div/section/div/div/div/div[2]/a");
 	
 	private WebDriver driver;
 
@@ -60,17 +57,7 @@ public class WallethubPage {
 		
 	}
 	
-	/*public void userLoginActionError(String user,String pass){
-		driver.findElement(inputTextUserName).sendKeys(user);
-		driver.findElement(inputTextUserPassword).sendKeys(pass);
-		
-		//click login button 
-		WebElement loginButton = driver.findElement(buttonLogin);
-        Actions builder = new Actions(driver);
-        builder.moveToElement(loginButton).click(loginButton);
-        builder.perform();
-
-	}*/
+	
 	
 	public void userLoginActionOk(String user,String pass){
 		
@@ -97,15 +84,7 @@ public class WallethubPage {
         builder.perform();
         	
 	}
-	/*
-	public String getLoginMsg() throws InterruptedException{
-		
-		Duration time = Duration.ofSeconds(5);
-		WebDriverWait wait = new WebDriverWait(driver, time);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(msgLogin));
-
-		return driver.findElement(msgLogin).getText();
-	}*/
+	
 	public String gotoURL(String url) throws InterruptedException{
 		 driver.navigate().to(url);
 		return driver.getCurrentUrl();
@@ -284,16 +263,7 @@ public class WallethubPage {
 	}
 	
 	public String checkProfileComments() throws InterruptedException{
-		
-		/*Duration time = Duration.ofSeconds(5);
-		Actions builder = new Actions(driver);
-		WebDriverWait wait = new WebDriverWait(driver, time);
-		        
-        wait.until(ExpectedConditions.visibilityOfElementLocated(userName));
-		*/
-        //TODO que nav al perfil
-        //TODO verify que haya un comentario a Test Insurance Company
-        return driver.findElement(userName).getText();
+        return driver.findElement(reviewMsgPosted).getText();
 	}
 	
 	

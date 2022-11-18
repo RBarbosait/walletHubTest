@@ -45,25 +45,12 @@ public class WallethubTests {
 	String user="rbarbosait@gmail.com";
 	String pass="walletHub_1";
 	
-	//String PATH_USERFILE= "./src/test/resources/userCredentials/userDoc.txt";
-
 
 	@BeforeMethod
 	public void setup(){
 		
-		/*//read user&pass
-		try {
-			String[] userNamePass = Utility.ReadDoc.readDocumentInfo(PATH_USERFILE).split("\\n+");
-			System.out.println(userNamePass[0]);
-			user=userNamePass[0];
-			pass=userNamePass[1];
-			//System.out.println(Utility.ReadDoc.readDocumentInfo(PATH_USERFILE));
-		} catch (Throwable e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
-		*/
+		
 		System.setProperty(TYPE_DRIVER, PATH_DRIVER);
 		ChromeOptions options = new ChromeOptions();
 		
@@ -79,8 +66,8 @@ public class WallethubTests {
 		wallethubPage=new WallethubPage(driver);
 		
 	}
-	/*
-	@SuppressWarnings("deprecation")
+	
+	@SuppressWarnings("deprecation")/*
 	@Test(priority=1)
 	public void testLoginOk(){
 		wallethubPage.userLoginActionOk(user, pass);
@@ -115,13 +102,13 @@ public class WallethubTests {
 			
 			e.printStackTrace();
 		}
-	}*/
-	
+	}
+	*/
 	@Test(priority=3)
 	public void testPostComment() throws Throwable{
 		String url2="https://wallethub.com/profile/13732055i";
 		String urlReview="https://wallethub.com/profile/test-insurance-company-13732055i#reviews";
-		String successMsg="Your review has been posted.";
+		String successMsg="Awesome!\n"+"Your review has been posted.";
 		String urlProfile="https://wallethub.com/profile/69288224i";
 		String reviewProfileName="Test Insurance Company";
 		
@@ -147,29 +134,28 @@ public class WallethubTests {
 			e.printStackTrace();
 		}
 		
-		try {
-			Assert.assertEquals(successMsg,wallethubPage.postComment("Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB"));
-		} catch (InterruptedException e) {
 		
-			e.printStackTrace();
-		}	
+		//System.out.println(wallethubPage.postComment("Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB"));
+		
+		
+		try {
+		Assert.assertEquals(successMsg,wallethubPage.postComment("Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB--Test_RB"));
+	} catch (InterruptedException e) {
+	
+		e.printStackTrace();
+	}	
 		
 		wallethubPage.gotoURL(urlProfile);
+		
+		try {
+		Assert.assertEquals(reviewProfileName,wallethubPage.checkProfileComments());
+	} catch (InterruptedException e) {
+	
+		e.printStackTrace();
+	}	
 
-		wallethubPage.checkProfileComments();
 		
 		
-		//wallethubPage.loginForComment(user, pass);
-
-		//String expListName=boardPage.getListName();
-		
-		//verify
-		/*try {
-			Assert.assertEquals(expListName,boardPage.getListaName());
-		} catch (InterruptedException e) {
-			
-			e.printStackTrace();
-		}*/
 	}
 	
 	
